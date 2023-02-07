@@ -1,0 +1,21 @@
+{
+  "name": "node-fs",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "migrate": "ts-node ./src/index.ts",
+    "m": "yarn migrate"
+  },
+  "devDependencies": {
+    "@tsconfig/recommended": "^1.0.2",
+    "@types/node": "^18.11.19",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@types/glob": "^8.0.1",
+    "glob": "^8.1.0"
+  }
+}
