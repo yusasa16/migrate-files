@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import convertScss from './css/convertScss';
 
 /**
  * ディレクトリを複製する
@@ -29,6 +30,7 @@ export function copyDirectory(src: string, dist: string) {
 		for(const item of items) {
 			const srcPath = path.join(src, item);
 			const distPath = path.join(dist, item);
+			const itemExtension = path.extname(item);
 
 			fs.stat(srcPath, (err, stats) => {
 				if(err) {
@@ -39,6 +41,12 @@ export function copyDirectory(src: string, dist: string) {
 				// ファイルであればコピー、
 				// ディレクトリであればコピー先にディレクトリを作成して再度関数実行
 				if(stats.isFile()) {
+					if(itemExtension === '.scss') {
+						console.log('scssファイルだよ。コピーしていません。特別な処理を今後実装する予定です。');
+						convertScss(srcPath, distPath);
+						return;
+					}
+
 					fs.copyFile(srcPath, distPath, (err) => {
 						if(err) {
 							console.error(err);
